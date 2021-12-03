@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: producer-java
+spec:
+  replicas: 1
+  selector:
+    matchLabels: 
+      app: producer
+  template: 
+    metadata:
+      labels:
+        app: producer
+    spec:
+      containers:
+      - name: producer
+        image: image-registry.openshift-image-registry.svc:5000/confluent/producer-java
+        # resources:
+        #   limits:
+        #     memory: 1300Mi
+        #     cpu: "1"
