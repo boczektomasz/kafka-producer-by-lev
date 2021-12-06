@@ -6,20 +6,10 @@ import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.clients.producer.ProducerRecord;
 import org.apache.kafka.common.serialization.StringSerializer;
-import org.springframework.beans.factory.annotation.Value;
 
 public class ProducerService {
 
-    // parametrization of variables declared in resources/application.properties:
-    @Value("${BOOTSTRAP_SERVERS}")
-    private static String bootstrap_servers;
-
-    @Value("${TOPIC_NAME}")
-    private static String topic_name;
-
-    public static void produce(String message) {
-        // When Kafka running locally in Docker use "127.0.0.1:9092"
-        String bootstrapServer = bootstrap_servers;
+    public static void produce(String message, String topic_name, String bootstrapServer) {
 
         // create producer properties
         Properties props = new Properties();
